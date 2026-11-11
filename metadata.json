@@ -1,0 +1,6 @@
+{
+  "name": "일러스트 직소 퍼즐 (Picture Puzzle Quest)",
+  "description": "5단계 난이도와 10개 스테이지의 배경 캐릭터 일러스트 그림 퍼즐 맞추기 게임. 완성본 미리보기, 클리어 타임 기록 및 진행도 저장 지원.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
