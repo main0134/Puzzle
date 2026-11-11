@@ -1,4 +1,8 @@
 import { Stage } from '../types/puzzle';
+import elfImg from '../assets/images/character_elf_forest_1794377612837.jpg';
+import cyberCatImg from '../assets/images/character_cyber_cat_1794377613267.jpg';
+import mermaidImg from '../assets/images/character_mermaid_deep_1794377613681.jpg';
+import foxSamuraiImg from '../assets/images/character_fox_samurai_1794377614692.jpg';
 
 // SVG Artwork helper for stages 5 through 10 to guarantee gorgeous, resilient character + background illustrations
 function createSvgDataUrl(svgContent: string): string {
@@ -427,7 +431,7 @@ export const STAGES: Stage[] = [
     character: '엘프 마도사 실피아 (Sylphia)',
     location: '세계수의 은밀한 성소',
     description: '반짝이는 요정 버섯과 신비로운 고대 숲속에서 달빛 마법의 구체를 소환하는 은발의 엘프 마법사입니다.',
-    imageUrl: '/src/assets/images/character_elf_forest_1794377612837.jpg',
+    imageUrl: elfImg,
     tags: ['판타지', '엘프', '신비의 숲', '마법'],
     themeColor: '#10b981',
   },
@@ -437,7 +441,7 @@ export const STAGES: Stage[] = [
     character: '천재 넷러너 사이버캣 (Byte)',
     location: '네오 교토 고층 루프탑',
     description: '화려한 홀로그램 간판과 날아다니는 미래 비행선이 가득한 빗속 사이버펑크 도시에서 데이터를 해킹하는 고양이 요원입니다.',
-    imageUrl: '/src/assets/images/character_cyber_cat_1794377613267.jpg',
+    imageUrl: cyberCatImg,
     tags: ['사이버펑크', '고양이', '네온', 'SF'],
     themeColor: '#a855f7',
   },
@@ -447,7 +451,7 @@ export const STAGES: Stage[] = [
     character: '산호의 인어 공주 코랄리아 (Coralia)',
     location: '침몰한 아틀란티스 대리석 신전',
     description: '영롱한 산호와 빛나는 해파리, 열대어 무리 사이를 유영하며 가라앉은 고대 왕국의 평화를 지키는 인어 수호자입니다.',
-    imageUrl: '/src/assets/images/character_mermaid_deep_1794377613681.jpg',
+    imageUrl: mermaidImg,
     tags: ['심해', '인어', '수중 궁전', '산호초'],
     themeColor: '#06b6d4',
   },
@@ -457,7 +461,7 @@ export const STAGES: Stage[] = [
     character: '검객 붉은여우 렌 (Ren)',
     location: '황혼의 천년 신사 토리이',
     description: '만개한 벚꽃 잎이 황혼 노을빛에 흩날리는 신사 입구에서 칼을 정비하며 마음을 다스리는 의리의 무사 여우입니다.',
-    imageUrl: '/src/assets/images/character_fox_samurai_1794377614692.jpg',
+    imageUrl: foxSamuraiImg,
     tags: ['동양풍', '여우 검객', '벚꽃', '황혼'],
     themeColor: '#f43f5e',
   },
