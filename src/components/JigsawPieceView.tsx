@@ -75,7 +75,7 @@ export const JigsawPieceView: React.FC<JigsawPieceViewProps> = ({
       onClick={onClick}
       className={`relative inline-block select-none transition-transform duration-150 ${
         draggable ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'
-      } ${isSelected ? 'scale-105 z-30 drop-shadow-2xl' : 'hover:scale-[1.03]'} ${
+      } ${isSelected ? 'scale-105 z-30 drop-shadow-2xl' : isPlacedOnBoard ? '' : 'hover:scale-[1.03]'} ${
         isDimmed ? 'opacity-30 grayscale' : 'opacity-100'
       } ${className}`}
       style={{
@@ -90,7 +90,7 @@ export const JigsawPieceView: React.FC<JigsawPieceViewProps> = ({
           filter: isSelected
             ? 'drop-shadow(0 0 10px rgba(245, 158, 11, 0.9)) drop-shadow(0 8px 16px rgba(0,0,0,0.6))'
             : isPlacedOnBoard
-            ? 'drop-shadow(0 2px 4px rgba(0,0,0,0.4))'
+            ? 'none'
             : 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))',
         }}
       >
@@ -115,20 +115,22 @@ export const JigsawPieceView: React.FC<JigsawPieceViewProps> = ({
         <path
           d={pathData}
           fill="none"
-          stroke={isSelected ? '#fbbf24' : isPlacedOnBoard ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.6)'}
-          strokeWidth={isSelected ? '3.5' : '2'}
+          stroke={isSelected ? '#fbbf24' : isPlacedOnBoard ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.7)'}
+          strokeWidth={isSelected ? '3' : isPlacedOnBoard ? '1' : '1.8'}
           strokeLinejoin="round"
           strokeLinecap="round"
         />
 
         {/* Subtle inner dark contour for depth */}
-        <path
-          d={pathData}
-          fill="none"
-          stroke="rgba(0,0,0,0.3)"
-          strokeWidth="1"
-          transform="translate(1, 1)"
-        />
+        {!isPlacedOnBoard && (
+          <path
+            d={pathData}
+            fill="none"
+            stroke="rgba(0,0,0,0.3)"
+            strokeWidth="1"
+            transform="translate(1, 1)"
+          />
+        )}
 
         {/* Optional Piece Number Indicator */}
         {showNumber && (

@@ -435,7 +435,7 @@ export const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
       </div>
 
       {/* Main Puzzle Board (Top Area) */}
-      <div className="relative w-full aspect-square max-w-[520px] max-h-[520px] bg-slate-950 border-4 border-slate-800/90 rounded-2xl p-3 shadow-2xl overflow-hidden select-none mb-6">
+      <div className="relative w-full aspect-square max-w-[580px] max-h-[580px] md:max-w-[620px] md:max-h-[620px] bg-slate-950 border-4 border-slate-800/90 rounded-2xl p-3 shadow-2xl overflow-hidden select-none mb-6">
         {/* Ghost Guide Background Image (Visible when enabled) */}
         {ghostOpacity > 0 && (
           <div
@@ -483,9 +483,9 @@ export const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
             const hasPiece = typeof placedPieceId === 'number' && !isNaN(placedPieceId) && placedPieceId >= 0 && placedPieceId < totalTiles;
             const isHovered = hoveredSlotIndex === slotIndex;
 
-            // Generate SVG path for slot silhouette outline
+            // Generate SVG path for slot silhouette outline (starts at 28, 28 in a 156x156 box)
             const tabSize = 22;
-            const slotPath = createJigsawPath(0, 0, 100, 100, edges, tabSize);
+            const slotPath = createJigsawPath(28, 28, 100, 100, edges, tabSize);
 
             return (
               <div
@@ -498,38 +498,56 @@ export const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
                   isHovered ? 'bg-indigo-500/20' : ''
                 }`}
               >
-                {/* Empty slot silhouette outline */}
+                {/* Empty slot silhouette outline - exact 1:1 scale with 28% margin */}
                 {!hasPiece && (
-                  <svg
-                    viewBox="-28 -28 156 156"
-                    className="w-full h-full absolute inset-0 pointer-events-none overflow-visible opacity-30 hover:opacity-60 transition-opacity"
+                  <div
+                    className="absolute pointer-events-none"
+                    style={{
+                      left: '-28%',
+                      top: '-28%',
+                      width: '156%',
+                      height: '156%',
+                    }}
                   >
-                    <path
-                      d={slotPath}
-                      fill="rgba(30, 41, 59, 0.4)"
-                      stroke="rgba(148, 163, 184, 0.4)"
-                      strokeWidth="1.5"
-                      strokeDasharray="4 3"
-                    />
-                    {showNumbers && (
-                      <text
-                        x="50"
-                        y="54"
-                        textAnchor="middle"
-                        fill="rgba(148, 163, 184, 0.6)"
-                        fontSize="14"
-                        fontFamily="monospace"
-                        fontWeight="bold"
-                      >
-                        {slotIndex + 1}
-                      </text>
-                    )}
-                  </svg>
+                    <svg
+                      viewBox="0 0 156 156"
+                      className="w-full h-full overflow-visible opacity-35 hover:opacity-60 transition-opacity"
+                    >
+                      <path
+                        d={slotPath}
+                        fill="rgba(30, 41, 59, 0.4)"
+                        stroke="rgba(148, 163, 184, 0.45)"
+                        strokeWidth="1.5"
+                        strokeDasharray="4 3"
+                      />
+                      {showNumbers && (
+                        <text
+                          x="78"
+                          y="83"
+                          textAnchor="middle"
+                          fill="rgba(148, 163, 184, 0.7)"
+                          fontSize="14"
+                          fontFamily="monospace"
+                          fontWeight="bold"
+                        >
+                          {slotIndex + 1}
+                        </text>
+                      )}
+                    </svg>
+                  </div>
                 )}
 
-                {/* Placed Jigsaw Piece */}
+                {/* Placed Jigsaw Piece - exact 1:1 seamless interlocking fit with zero gaps */}
                 {hasPiece && (
-                  <div className="absolute inset-0 z-20">
+                  <div
+                    className="absolute z-20 pointer-events-auto"
+                    style={{
+                      left: '-28%',
+                      top: '-28%',
+                      width: '156%',
+                      height: '156%',
+                    }}
+                  >
                     <JigsawPieceView
                       id={placedPieceId}
                       row={Math.floor(placedPieceId / gridSize)}
@@ -587,7 +605,7 @@ export const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
           <div
             ref={trayScrollRef}
             className="flex items-center gap-4 overflow-x-auto py-3 px-2 scroll-smooth"
-            style={{ minHeight: '110px' }}
+            style={{ minHeight: '124px' }}
           >
             {displayedTrayPieceIds.map((pieceId) => {
               if (typeof pieceId !== 'number' || isNaN(pieceId) || pieceId < 0 || pieceId >= totalTiles) return null;
@@ -601,7 +619,7 @@ export const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
                 <div
                   key={pieceId}
                   className="shrink-0 flex flex-col items-center justify-center p-1"
-                  style={{ width: '84px', height: '84px' }}
+                  style={{ width: '96px', height: '96px' }}
                 >
                   <JigsawPieceView
                     id={pieceId}
